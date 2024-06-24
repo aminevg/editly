@@ -223,7 +223,7 @@ async function Editly(config = {}) {
       '-y', outPath,
     ];
     if (verbose) console.log('ffmpeg', args.join(' '));
-    return execa(ffmpegPath, args, { encoding: null, buffer: false, stdin: 'pipe', stdout: process.stdout, stderr: process.stderr });
+    return execa(ffmpegPath, args, { buffer: false, stdin: 'pipe', stdout: process.stdout, stderr: process.stderr });
   }
 
   let outProcess;
@@ -377,7 +377,7 @@ async function Editly(config = {}) {
 
       outProcess.stdin.end();
     } catch (err) {
-      outProcess.kill();
+      outProcess?.kill();
       throw err;
     } finally {
       if (verbose) console.log('Cleanup');
